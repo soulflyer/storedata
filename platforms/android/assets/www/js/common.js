@@ -53,6 +53,11 @@ function download() {
     var fileURL = "http://bp.wiserobot.com/flashcardsapi/api/getGenres";
     var localFileName = "genres";
     alert('Downloading ' + fileURL + " to: " + localFileName);
+    downloadFile(fileURL,localFileName);
+}
+
+function downloadFile(fileURL,localFileName){
+
     var fileTransfer = new FileTransfer();
     fileTransfer.download(fileURL,
                           downloadDirectory.fullPath + '/' + localFileName,

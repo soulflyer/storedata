@@ -29,6 +29,7 @@
 /Users/iain/Code/workspace/storedata2/platforms/android/assets/www/index.html \
 /Users/iain/Code/workspace/storedata2/platforms/android/assets/www/js \
 /Users/iain/Code/workspace/storedata2/platforms/android/assets/www/plugins \
+/Users/iain/Code/workspace/storedata2/platforms/android/assets/www/README \
 /Users/iain/Code/workspace/storedata2/platforms/android/assets/www/res \
 /Users/iain/Code/workspace/storedata2/platforms/android/assets/www/spec \
 /Users/iain/Code/workspace/storedata2/platforms/android/assets/www/spec.html \

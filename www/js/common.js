@@ -53,6 +53,11 @@ function download() {
     var fileURL = "http://bp.wiserobot.com/flashcardsapi/api/getGenres";
     var localFileName = "genres";
     alert('Downloading ' + fileURL + " to: " + localFileName);
+    downloadFile(fileURL,localFileName);
+}
+
+function downloadFile(fileURL,localFileName){
+
     var fileTransfer = new FileTransfer();
     fileTransfer.download(fileURL,
                           downloadDirectory.fullPath + '/' + localFileName,
@@ -69,13 +74,13 @@ function readLocal(filename){
 }
 
 function gotFileEntry(fileEntry){
-    alert("Found fileentry");
+//    alert("Found fileentry");
     fileEntry.file(gotFile, fail);
 }
 
 function gotFile(file){
     var reader= new FileReader();
-    alert("Found file: " + file.name);
+//    alert("Found file: " + file.name);
 
     reader.onloadend = function(evt){
         alert("File: " + evt.target.result);
