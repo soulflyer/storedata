@@ -6,7 +6,8 @@ cordova plugin add https://git-wip-us.apache.org/repos/asf/cordova-plugin-networ
 for file transfer:
 cordova plugin add https://git-wip-us.apache.org/repos/asf/cordova-plugin-file-transfer.git
 
-** readLocal **
+readLocal
+---------
 takes 2 params, filename and saveTo. It will read the file from the local file system,
 using the global variable savedFilesystem to build the full pathname.
 saveTo must be an function NOT a simple variable (simple variables are passed by value)
