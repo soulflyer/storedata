@@ -11,7 +11,7 @@ var isConnected = false;
 var savedFilesystem;
 var downloadDirectory;
 var localFileSystemName;
-var loginDetails;
+//var loginDetails;
 function returnedResult(){
     this.value="default value";
 }
@@ -46,8 +46,8 @@ function onDeviceReady() {
     alert("Returnedresult.value is:" + returnedResult.value);
     readLocal("genres", returnedResult);
     alert("ReadLocal returned: " + returnedResult.value);
-    // alert("calling writelocal");
     writeLocal("passwd","Some random stuff");
+    alert("vars: " + savedFilesystem.name + " : " + downloadDirectory.name + " : " + localFileSystemName + " : " + loginDetails) ;
 }
 function networkDetection() {
     //alert("Checking for network, isPhoneGapReady:" + isPhoneGapReady);
@@ -57,7 +57,7 @@ function networkDetection() {
         // as long as the connection type is not none,
         // the device should have Internet access
         if (navigator.connection.type != Connection.NONE) {
-            isConnected = true; }
+           isConnected = true; }
     }
 }
 
@@ -78,26 +78,24 @@ function download() {
 
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////
-// Above this comment is demo application setup. Cut and paste the middle section starting here only
+// Above this comment is demo application setup. Cut and paste the following section starting here.
 // Note: You will need to set some global variables.
 //
 ////////////////////////////////////////////////////////////////////////////////////////////////////
 
 function writeLocal(filename, contents){
     //alert("hello from writeLocal");
+    var localContents = contents;
     loginDetails = contents;
     savedFilesystem.root.getFile(localFileSystemName + "/" + filename, {create: true, exclusive: false},
                                  gotWriteFileEntry, fail);
-
-}
-
-function gotWriteFileEntry(fileEntry){
-    fileEntry.createWriter(gotFileWriter, fail);
-}
-
-function gotFileWriter(writer){
-    alert("Detail: " + loginDetails);
-    writer.write(loginDetails);
+    function gotWriteFileEntry(fileEntry){
+        fileEntry.createWriter(gotFileWriter, fail);
+    }
+    function gotFileWriter(writer){
+        alert("Detail: " + localContents);
+        writer.write(localContents);
+    }
 }
 
 function downloadFile(fileURL,localFileName){
@@ -116,12 +114,9 @@ function downloadFile(fileURL,localFileName){
 
 function readLocal(filename,variableName){
     var localVariableName =variableName;
- //   var that = this;
     savedFilesystem.root.getFile(downloadDirectory.name + "/" + filename, null, gotFileEntry, fail);
     function gotFileEntry(fileEntry) {
-   //     var that= this;
         localVariableName.value="yet more crap";
- //       alert("Hello from gotFileEntry2");
         fileEntry.file(gotFile, fail);
     };
     function gotFile(file){
@@ -134,26 +129,6 @@ function readLocal(filename,variableName){
     };
 }
 
-// function gotFileEntry(fileEntry){
-//     fileEntry.file(gotFile, fail);
-// }
-
-
 function fail(error) {
     alert('We encountered a problem: ' + error.code);
 }
-
-////////////////////////////////////////////////////////////////////////////////////////////////////
-// Below this line is just to display the returned data
-////////////////////////////////////////////////////////////////////////////////////////////////////
-
-// function gotFile(file){
-//     var reader= new FileReader();
-//     //    alert("Found file: " + file.name);
-
-//     reader.onloadend = function(evt){
-//         alert("File: " + evt.target.result);
-
-//     };
-//     reader.readAsText(file);
-// }

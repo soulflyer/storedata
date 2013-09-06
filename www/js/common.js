@@ -11,7 +11,7 @@ var isConnected = false;
 var savedFilesystem;
 var downloadDirectory;
 var localFileSystemName;
-var loginDetails;
+//var loginDetails;
 function returnedResult(){
     this.value="default value";
 }
@@ -47,6 +47,7 @@ function onDeviceReady() {
     readLocal("genres", returnedResult);
     alert("ReadLocal returned: " + returnedResult.value);
     writeLocal("passwd","Some random stuff");
+    alert("vars: " + savedFilesystem.name + " : " + downloadDirectory.name + " : " + localFileSystemName + " : " + loginDetails) ;
 }
 function networkDetection() {
     //alert("Checking for network, isPhoneGapReady:" + isPhoneGapReady);
@@ -56,7 +57,7 @@ function networkDetection() {
         // as long as the connection type is not none,
         // the device should have Internet access
         if (navigator.connection.type != Connection.NONE) {
-            isConnected = true; }
+           isConnected = true; }
     }
 }
 
@@ -84,19 +85,17 @@ function download() {
 
 function writeLocal(filename, contents){
     //alert("hello from writeLocal");
+    var localContents = contents;
     loginDetails = contents;
     savedFilesystem.root.getFile(localFileSystemName + "/" + filename, {create: true, exclusive: false},
                                  gotWriteFileEntry, fail);
-
-}
-
-function gotWriteFileEntry(fileEntry){
-    fileEntry.createWriter(gotFileWriter, fail);
-}
-
-function gotFileWriter(writer){
-    alert("Detail: " + loginDetails);
-    writer.write(loginDetails);
+    function gotWriteFileEntry(fileEntry){
+        fileEntry.createWriter(gotFileWriter, fail);
+    }
+    function gotFileWriter(writer){
+        alert("Detail: " + localContents);
+        writer.write(localContents);
+    }
 }
 
 function downloadFile(fileURL,localFileName){
