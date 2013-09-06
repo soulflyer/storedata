@@ -4,12 +4,21 @@ var isPhoneGapReady = false;
 // Store the current network status
 var isConnected = false;
 
+
+////////////////////////////////////////////////////////////////////////////////////////////////////
+// These global variables will be needed
+////////////////////////////////////////////////////////////////////////////////////////////////////
 var savedFilesystem;
 var downloadDirectory;
-var fileObject;
 var localFileSystemName;
+var loginDetails;
+function returnedResult(){
+    this.value="default value";
+}
+
 
 localFileSystemName="my_downloads";
+////////////////////////////////////////////////////////////////////////////////////////////////////
 
 // Set an onload handler to call the init function
 window.onload = init;
@@ -23,17 +32,22 @@ function init() {
 function onDeviceReady() {
 
     isPhoneGapReady = true;
-    alert('The device is now ready');
+    // alert('The device is now ready');
 
     // detect for network access
     networkDetection();
-    alert("isConnected:" + isConnected);
+    // alert("isConnected:" + isConnected);
 
     window.requestFileSystem( LocalFileSystem.PERSISTENT, 0, onFileSystemSuccess , null );
-    alert("Filesystem request returned: " + downloadDirectory.fullPath);
+    // alert("Filesystem request returned: " + downloadDirectory.fullPath);
     download();
-    alert("Download complete. Hit OK to read contents of file from local storage");
-    readLocal("genres");
+    alert("Download call returned. Hit OK to read contents of file from local storage");
+    returnedResult.value = "Default value";
+    alert("Returnedresult.value is:" + returnedResult.value);
+    readLocal("genres", returnedResult);
+    alert("ReadLocal returned: " + returnedResult.value);
+    // alert("calling writelocal");
+    writeLocal("passwd","Some random stuff");
 }
 function networkDetection() {
     //alert("Checking for network, isPhoneGapReady:" + isPhoneGapReady);
@@ -61,10 +75,30 @@ function download() {
     downloadFile(fileURL,localFileName);
 }
 
+
+
 ////////////////////////////////////////////////////////////////////////////////////////////////////
 // Above this comment is demo application setup. Cut and paste the middle section starting here only
 // Note: You will need to set some global variables.
+//
 ////////////////////////////////////////////////////////////////////////////////////////////////////
+
+function writeLocal(filename, contents){
+    //alert("hello from writeLocal");
+    loginDetails = contents;
+    savedFilesystem.root.getFile(localFileSystemName + "/" + filename, {create: true, exclusive: false},
+                                 gotWriteFileEntry, fail);
+
+}
+
+function gotWriteFileEntry(fileEntry){
+    fileEntry.createWriter(gotFileWriter, fail);
+}
+
+function gotFileWriter(writer){
+    alert("Detail: " + loginDetails);
+    writer.write(loginDetails);
+}
 
 function downloadFile(fileURL,localFileName){
 
@@ -80,13 +114,29 @@ function downloadFile(fileURL,localFileName){
                           } );
 }
 
-function readLocal(filename){
+function readLocal(filename,variableName){
+    var localVariableName =variableName;
+ //   var that = this;
     savedFilesystem.root.getFile(downloadDirectory.name + "/" + filename, null, gotFileEntry, fail);
+    function gotFileEntry(fileEntry) {
+   //     var that= this;
+        localVariableName.value="yet more crap";
+ //       alert("Hello from gotFileEntry2");
+        fileEntry.file(gotFile, fail);
+    };
+    function gotFile(file){
+        var reader=new FileReader();
+        reader.onloadend = function(evt){
+            alert("File: " + evt.target.result );
+            localVariableName.value = evt.target.result;
+        };
+        reader.readAsText(file);
+    };
 }
 
-function gotFileEntry(fileEntry){
-    fileEntry.file(gotFile, fail);
-}
+// function gotFileEntry(fileEntry){
+//     fileEntry.file(gotFile, fail);
+// }
 
 
 function fail(error) {
@@ -97,12 +147,13 @@ function fail(error) {
 // Below this line is just to display the returned data
 ////////////////////////////////////////////////////////////////////////////////////////////////////
 
-function gotFile(file){
-    var reader= new FileReader();
-    //    alert("Found file: " + file.name);
+// function gotFile(file){
+//     var reader= new FileReader();
+//     //    alert("Found file: " + file.name);
 
-    reader.onloadend = function(evt){
-        alert("File: " + evt.target.result);
-    };
-    reader.readAsText(file);
-}
+//     reader.onloadend = function(evt){
+//         alert("File: " + evt.target.result);
+
+//     };
+//     reader.readAsText(file);
+// }
