@@ -7,19 +7,20 @@ for file transfer:
 cordova plugin add https://git-wip-us.apache.org/repos/asf/cordova-plugin-file-transfer.git
 
 ## readLocal
----------
+
 takes 2 params, filename and saveTo. It will read the file from the local file system,
 using the global variable savedFilesystem to build the full pathname.
 saveTo must be an function NOT a simple variable (simple variables are passed by value)
 
 ie
 
-function returnedResult(){
+```function returnedResult(){
          this.value="default value";
 }
-
+```
 this is called like this:
 
-readLocal("filename", returnedResult);
+```readLocal("filename", returnedResult);
+```
 
 and the result can then be accessed as returnedResult.value
