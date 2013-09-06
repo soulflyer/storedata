@@ -1,7 +1,0 @@
-Run these in the project directory.
-for file system:
-cordova plugin add https://git-wip-us.apache.org/repos/asf/cordova-plugin-file.git
-for network connection:
-cordova plugin add https://git-wip-us.apache.org/repos/asf/cordova-plugin-network-information.git
-for file transfer:
-cordova plugin add https://git-wip-us.apache.org/repos/asf/cordova-plugin-file-transfer.git
