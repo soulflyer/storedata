@@ -9,6 +9,9 @@ cordova plugin add https://git-wip-us.apache.org/repos/asf/cordova-plugin-networ
 for file transfer:
 cordova plugin add https://git-wip-us.apache.org/repos/asf/cordova-plugin-file-transfer.git
 
+Then copy the last part of common.js somewhere it can be accessed from the project.
+Instructions are in the comments.
+
 ## readLocal
 
 takes 2 params, filename and saveTo. It will read the file from the local file system,
