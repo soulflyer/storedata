@@ -14,13 +14,15 @@ saveTo must be an function NOT a simple variable (simple variables are passed by
 
 ie
 
-```function returnedResult(){
+```
+function returnedResult(){
          this.value="default value";
 }
 ```
 this is called like this:
 
-```readLocal("filename", returnedResult);
+```
+readLocal("filename", returnedResult);
 ```
 
 and the result can then be accessed as returnedResult.value
