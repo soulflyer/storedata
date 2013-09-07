@@ -9,7 +9,7 @@ cordova plugin add https://git-wip-us.apache.org/repos/asf/cordova-plugin-networ
 for file transfer:
 cordova plugin add https://git-wip-us.apache.org/repos/asf/cordova-plugin-file-transfer.git
 
-Then copy file localfile.js into the project. Include a coresponding <script> statement
+Then copy file localfile.js into the project. Include a coresponding script statement
 in index.html and call onFileSystemSuccess as a callback from onDeviceReady to set up the
 local file system.
 
