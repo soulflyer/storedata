@@ -1,16 +1,17 @@
-var savedFilesystem;
-var downloadDirectory;
-var localFileSystemName;
-function returnedResult(){
-    this.value="default value";
-}
-localFileSystemName="my_downloads";
+// var savedFilesystem;
+// var downloadDirectory;
+// var localFileSystemName;
+// function returnedResult(){
+//     this.value="default value";
+// }
+// localFileSystemName="my_downloads";
 
 // Call this function when the app is ready, to set up the local file system for use
 function onFileSystemSuccess(fileSystem) {
     savedFilesystem=fileSystem;
     fileSystem.root.getDirectory(localFileSystemName , {create:true},
                                  function(dir) {downloadDirectory = dir; },fail);
+}
 
 function writeLocal(filename, contents){
     //alert("hello from writeLocal");

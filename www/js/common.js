@@ -4,6 +4,14 @@ var isPhoneGapReady = false;
 // Store the current network status
 var isConnected = false;
 
+var savedFilesystem;
+var downloadDirectory;
+var localFileSystemName;
+function returnedResult(){
+    this.value="default value";
+}
+localFileSystemName="my_downloads";
+
 // Set an onload handler to call the init function
 window.onload = init;
 
@@ -20,10 +28,10 @@ function onDeviceReady() {
 
     // detect for network access
     networkDetection();
-    // alert("isConnected:" + isConnected);
+    alert("isConnected:" + isConnected);
 
     window.requestFileSystem( LocalFileSystem.PERSISTENT, 0, onFileSystemSuccess , null );
-    // alert("Filesystem request returned: " + downloadDirectory.fullPath);
+     alert("Filesystem request returned: " + downloadDirectory.fullPath);
     download();
     alert("Download call returned. Hit OK to read contents of file from local storage");
     returnedResult.value = "Default value";

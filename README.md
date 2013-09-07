@@ -13,6 +13,9 @@ Then copy file localfile.js into the project. Include a coresponding script stat
 in index.html and call onFileSystemSuccess as a callback from onDeviceReady to set up the
 local file system.
 
+For now you will also need to copy the global variables (coomented out in localfile.js)
+into the main javascript file of the project.
+
 
 ## readLocal
 
