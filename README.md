@@ -32,3 +32,17 @@ readLocal("filename", returnedResult);
 ```
 
 and the result can then be accessed as returnedResult.value
+
+## writeLocal
+
+takes 2 parameters, filename and contents and writes "contents" to the file specified
+by the filename appended to the path to the filesystem held in the global variable
+savedfileSystem and the directory named in the global variable localFileSystemName
+
+ie
+
+```
+writeLocal("filename", "file contents");
+```
+
+will write "file contents" into the file /path/to/savedFileSystem/localFileSystemName/filename
