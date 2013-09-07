@@ -9,8 +9,10 @@ cordova plugin add https://git-wip-us.apache.org/repos/asf/cordova-plugin-networ
 for file transfer:
 cordova plugin add https://git-wip-us.apache.org/repos/asf/cordova-plugin-file-transfer.git
 
-Then copy the last part of common.js somewhere it can be accessed from the project.
-Instructions are in the comments.
+Then copy file localfile.js into the project. Include a coresponding <script> statement
+in index.html and call onFileSystemSuccess as a callback from onDeviceReady to set up the
+local file system.
+
 
 ## readLocal
 
