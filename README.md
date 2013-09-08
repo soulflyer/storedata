@@ -1,6 +1,6 @@
 # Store data locally
 
-The dordova project requires some plugins. Run these in the project directory.
+The cordova project requires some plugins. Run these in the project directory.
 
 ```
 cordova plugin add https://git-wip-us.apache.org/repos/asf/cordova-plugin-file.git
@@ -54,3 +54,7 @@ writeLocal("filename", "file contents");
 ```
 
 will write "file contents" into the file /path/to/savedFileSystem/localFileSystemName/filename
+
+## networkConnected
+
+No parameters, returns true or false
