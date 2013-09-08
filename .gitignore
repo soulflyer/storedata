@@ -2,3 +2,9 @@ platforms/
 merges/
 plugins/
 .cordova/
+www/config.xml
+www/css/
+www/res/
+www/img/
+www/spec/
+www/spec.html

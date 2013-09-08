@@ -1,21 +1,24 @@
-Run these in the project directory.
+# Store data locally
 
-for file system:
+The dordova project requires some plugins. Run these in the project directory.
+
+```
 cordova plugin add https://git-wip-us.apache.org/repos/asf/cordova-plugin-file.git
 
-for network connection:
 cordova plugin add https://git-wip-us.apache.org/repos/asf/cordova-plugin-network-information.git
 
-for file transfer:
 cordova plugin add https://git-wip-us.apache.org/repos/asf/cordova-plugin-file-transfer.git
+```
 
 Then copy file localfile.js into the project. Include a coresponding script statement
 in index.html and call onFileSystemSuccess as a callback from onDeviceReady to set up the
 local file system.
 
-For now you will also need to copy the global variables (coomented out in localfile.js)
-into the main javascript file of the project.
+common.js and index.html are provided to enable testing and to show use.
+They are not needed in the project.
 
+To try out these functions just add all the files to a new cordova project.
+For real use, only localfile.js is needed.
 
 ## readLocal
 

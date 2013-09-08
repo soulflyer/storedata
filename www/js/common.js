@@ -1,21 +1,14 @@
-// Global variable that will tell us whether PhoneGap is ready
-var isPhoneGapReady = false;
+// returnedResults is somewhere to store the contents of a file read from the local file system
+// This is passed as a parameter to readLocal and must be a function not a simple type.
+// Simple types are passed by value and the result will therefore be discarded without us ever
+// seeing it.
 
-// Store the current network status
-var isConnected = false;
-
-var savedFilesystem;
-var downloadDirectory;
-var localFileSystemName;
 function returnedResult(){
     this.value="default value";
 }
-localFileSystemName="my_downloads";
 
-// Set an onload handler to call the init function
+
 window.onload = init;
-
-
 function init() {
     // Add an event listener for deviceready
     document.addEventListener("deviceready", onDeviceReady, false);
@@ -23,34 +16,20 @@ function init() {
 
 function onDeviceReady() {
 
-    isPhoneGapReady = true;
-    // alert('The device is now ready');
+    alert("networkConnected: " + networkConnected());
 
-    // detect for network access
-    networkDetection();
-    alert("isConnected:" + isConnected);
+    localFileSystemName="BPData";
 
     window.requestFileSystem( LocalFileSystem.PERSISTENT, 0, onFileSystemSuccess , null );
      alert("Filesystem request returned: " + downloadDirectory.fullPath);
     download();
     alert("Download call returned. Hit OK to read contents of file from local storage");
-    returnedResult.value = "Default value";
-    alert("Returnedresult.value is:" + returnedResult.value);
     readLocal("genres", returnedResult);
     alert("ReadLocal returned: " + returnedResult.value);
+
     writeLocal("passwd","Some random stuff");
-    alert("vars: " + savedFilesystem.name + " : " + downloadDirectory.name + " : " + localFileSystemName + " : " + loginDetails) ;
-}
-function networkDetection() {
-    //alert("Checking for network, isPhoneGapReady:" + isPhoneGapReady);
-    var connectionState = navigator.connection.type;
-    //alert("connectionState:" + connectionState);
-    if (isPhoneGapReady) {
-        // as long as the connection type is not none,
-        // the device should have Internet access
-        if (navigator.connection.type != Connection.NONE) {
-           isConnected = true; }
-    }
+    readLocal("passwd", returnedResult);
+    alert("readLocal returned: " + returnedResult.value);
 }
 
 function download() {
@@ -59,3 +38,4 @@ function download() {
     alert('Downloading ' + fileURL + " to: " + localFileName);
     downloadFile(fileURL,localFileName);
 }
+ariabl

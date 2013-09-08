@@ -1,10 +1,6 @@
-// var savedFilesystem;
-// var downloadDirectory;
-// var localFileSystemName;
-// function returnedResult(){
-//     this.value="default value";
-// }
-// localFileSystemName="my_downloads";
+var savedFilesystem;
+var downloadDirectory;
+var localFileSystemName="my_downloads";
 
 // Call this function when the app is ready, to set up the local file system for use
 function onFileSystemSuccess(fileSystem) {
@@ -23,7 +19,6 @@ function writeLocal(filename, contents){
         fileEntry.createWriter(gotFileWriter, fail);
     }
     function gotFileWriter(writer){
-        alert("Detail: " + localContents);
         writer.write(localContents);
     }
 }
@@ -33,10 +28,7 @@ function downloadFile(fileURL,localFileName){
     var fileTransfer = new FileTransfer();
     fileTransfer.download(fileURL,
                           downloadDirectory.fullPath + '/' + localFileName,
-                          function(entry){
-                              //alert('Download complete. File saved to: ' + entry.fullPath);
-                          },
-
+                          null,
                           function(error){
                               alert("Download error source " + JSON.stringify(error));
                           } );
@@ -52,11 +44,14 @@ function readLocal(filename,variableName){
     function gotFile(file){
         var reader=new FileReader();
         reader.onloadend = function(evt){
-            alert("File: " + evt.target.result );
             localVariableName.value = evt.target.result;
         };
         reader.readAsText(file);
     };
+}
+
+function networkConnected(){
+    return (navigator.connection.type != Connection.none);
 }
 
 function fail(error) {
