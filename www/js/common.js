@@ -20,8 +20,9 @@ function onDeviceReady() {
 
     localFileSystemName="BPData";
 
-    window.requestFileSystem( LocalFileSystem.PERSISTENT, 0, onFileSystemSuccess , null );
-     alert("Filesystem request returned: " + downloadDirectory.fullPath);
+    setupLocalFileSystem();
+
+      alert("Filesystem request returned: " + downloadDirectory.fullPath);
     download();
     alert("Download call returned. Hit OK to read contents of file from local storage");
     readLocal("genres", returnedResult);

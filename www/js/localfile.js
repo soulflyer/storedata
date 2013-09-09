@@ -2,6 +2,10 @@ var savedFilesystem;
 var downloadDirectory;
 var localFileSystemName="my_downloads";
 
+function setupLocalFileSystem () {
+    window.requestFileSystem(LocalFileSystem.PERSISTENT, 0, onFileSystemSuccess, null);
+}
+
 // Call this function when the app is ready, to set up the local file system for use
 function onFileSystemSuccess(fileSystem) {
     savedFilesystem=fileSystem;

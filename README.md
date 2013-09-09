@@ -11,14 +11,17 @@ cordova plugin add https://git-wip-us.apache.org/repos/asf/cordova-plugin-file-t
 ```
 
 Then copy file localfile.js into the project. Include a coresponding script statement
-in index.html and call onFileSystemSuccess as a callback from onDeviceReady to set up the
-local file system.
+in index.html and call setupLocalFileSystem to set up the local file system.
 
 common.js and index.html are provided to enable testing and to show use.
 They are not needed in the project.
 
 To try out these functions just add all the files to a new cordova project.
 For real use, only localfile.js is needed.
+
+## setupLocalFileSystem
+
+No parameters. Call this once the device is ready. Sets up a local file system using the name found in localFileSystemName
 
 ## readLocal
 
