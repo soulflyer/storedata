@@ -22,7 +22,8 @@ function onDeviceReady() {
 
     setupLocalFileSystem();
 
-      alert("Filesystem request returned: " + downloadDirectory.fullPath);
+    //window.requestFileSystem( LocalFileSystem.PERSISTENT, 0, onFileSystemSuccess , null );
+     alert("Filesystem request returned: " + downloadDirectory.fullPath);
     download();
     alert("Download call returned. Hit OK to read contents of file from local storage");
     readLocal("genres", returnedResult);
@@ -39,4 +40,3 @@ function download() {
     alert('Downloading ' + fileURL + " to: " + localFileName);
     downloadFile(fileURL,localFileName);
 }
-ariabl
