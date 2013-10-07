@@ -29,8 +29,10 @@ function onDeviceReady() {
     readLocal("genres", returnedResult);
     alert("ReadLocal returned: " + returnedResult.value);
 
-    writeLocal("passwd","Some random stuff");
-    readLocal("passwd", returnedResult);
+    mkdirLocal("testdir");
+
+    writeLocal("testdir/passwd2","Some random stuff");
+    readLocal("testdir/passwd2", returnedResult);
     alert("readLocal returned: " + returnedResult.value);
 }
 

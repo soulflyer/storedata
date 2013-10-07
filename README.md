@@ -43,6 +43,9 @@ readLocal("filename", returnedResult);
 ```
 
 and the result can then be accessed as returnedResult.value
+## mkdirLocal
+
+takes 1 param, the directory name to be created and creates a directory in the file system created by  setupLocalFileSystem. Intermediate directories will not be created automatically so must be created one at a time.
 
 ## writeLocal
 

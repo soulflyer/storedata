@@ -27,6 +27,14 @@ function writeLocal(filename, contents){
     }
 }
 
+function mkdirLocal(dirname){
+    savedFilesystem.root.getDirectory(localFileSystemName + "/" + dirname, {create: true, exclusive: false},
+                                      gotMkdirEntry, fail);
+    function gotMkdirEntry(dirEntry){
+        console.log("Created subdirectory: " + dirEntry.name);
+    }
+}
+
 function downloadFile(fileURL,localFileName){
 
     var fileTransfer = new FileTransfer();
