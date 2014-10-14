@@ -16,12 +16,7 @@ function init() {
     document.addEventListener("deviceready", onDeviceReady, false);
 }
 
-function onDeviceReady() {
-    // localFileSystemName="BPData";
-    window.requestFileSystem(LocalFileSystem.PERSISTENT, 0, onFileSystemSuccess, null);
-}
-
-function onFileSystemSuccess(fileSystem) {
+function onDeviceReady(){
     window.resolveLocalFileSystemURL(cordova.file.applicationStorageDirectory, function(fentry){
         console.log("Data directory: " + fentry.fullPath);
         fentry.getDirectory(localFileSystemName , {create:true}, doDownloadTests , fail);
