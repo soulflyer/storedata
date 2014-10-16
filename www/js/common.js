@@ -1,9 +1,5 @@
 var localFileSystemName="BPData";
 
-function returnedResult(){
-    this.value="default value";
-}
-
 window.onload = init;
 function init() {
     alert("Hello");
@@ -15,18 +11,27 @@ function onDeviceReady(){
     //     console.log("Data directory: " + fentry.fullPath);
     //     fentry.getDirectory(localFileSystemName , {create:true}, doDownloadTests , fail);
     // });
+    console.log("Calling writeLocal");
     writeLocal("genres3","http://barperfe.nextmp.net/flashcardsapi/api/getSubjectsfile");
-    readLocal("genres3");
+    console.log("Calling readLocal");
+    readLocal("genres3",testOutput);
 }
 
 function fail(error) {
     alert('We encountered a problem: ' + error.code);
 }
 
-function readLocal(fileName){
-    console.log("filename: " + fileName);
+function testOutput(returnedOutput){
+    console.log("In testOutput");
+    var txtArea = document.createElement('textarea');
+    txtArea.value = returnedOutput;
+    document.body.appendChild(txtArea);
+    console.log("Read returned: " + returnedOutput);
+}
+
+function readLocal(fileName,onComplete){
+    console.log("In readLocal with filename: " + fileName);
     window.resolveLocalFileSystemURL(cordova.file.applicationStorageDirectory, function(fentry){
-        console.log("Data directory: " + fentry.fullPath);
         fentry.getDirectory(localFileSystemName,
                             null,
                             function(dirEntry){
@@ -40,10 +45,7 @@ function readLocal(fileName){
         function gotFile(gfile){
             var reader=new FileReader;
             reader.onloadend= function(evt){
-                var txtArea = document.createElement('textarea');
-                txtArea.value = this.result;
-                document.body.appendChild(txtArea);
-                console.log("Read returned: " + this.result);
+                onComplete(this.result);
             };
             reader.readAsText(gfile);
         }
@@ -53,7 +55,6 @@ function readLocal(fileName){
 function writeLocal(fileName,fileURL){
     console.log("filename: " + fileName + " fileURL: " + fileURL);
     window.resolveLocalFileSystemURL(cordova.file.applicationStorageDirectory, function(fentry){
-        console.log("Data directory: " + fentry.fullPath);
         fentry.getDirectory(localFileSystemName,
                             {create:true},
                             function(dirEntry){
