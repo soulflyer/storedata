@@ -17,6 +17,10 @@ They are not needed in the project.
 To try out these functions just add all the files to a new cordova project.
 For real use, only localfile.js is needed.
 
+Don't forget to add the file read/write plugins too:
+cordova plugin add https://git-wip-us.apache.org/repos/asf/cordova-plugin-file.git
+cordova plugin add https://git-wip-us.apache.org/repos/asf/cordova-plugin-file-transfer.git
+
 ## readLocal
 
 takes 2 params, filename and onComplete(). It will read the file from the local file system
