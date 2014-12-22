@@ -9,7 +9,7 @@ cordova plugin add https://git-wip-us.apache.org/repos/asf/cordova-plugin-file-t
 ```
 
 Then copy file storedata.js into the project. Include a coresponding script statement
-in index.html and call setupLocalFileSystem to set up the local file system.
+in index.html.
 
 common.js and index.html are provided to enable testing and to show use.
 They are not needed in the project.
