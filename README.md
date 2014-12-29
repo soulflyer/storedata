@@ -17,7 +17,6 @@ They are not needed in the project.
 To try out these functions just add all the files to a new cordova project.
 For real use, only localfile.js is needed.
 
-
 ## readLocal
 
 takes 2 params, filename and onComplete(). It will read the file from the local file system
